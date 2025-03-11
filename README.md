@@ -1,4 +1,4 @@
-# homebrew-buf
+# homebrew-lr
 
 This provides a [Homebrew](https://brew.sh) tap for [lr](https://github.com/melonmanchan/lr).
 
