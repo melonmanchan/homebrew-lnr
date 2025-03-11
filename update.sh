@@ -26,6 +26,15 @@ fi
 
 VERSION="${1}"
 
+RELEASE_URL="https://github.com/melonmanchan/lr/releases/tag/v${VERSION}"
+
+HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$RELEASE_URL")
+
+if [ "$HTTP_CODE" -ne 200 ]; then
+  echo "Error: received HTTP status code $HTTP_CODE while looking up release $RELEASE_URL"
+  exit 1
+fi
+
 ARM_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-macos-arm64.zip"
 ARM_SHA256=$(curl -sSL "${ARM_URL}" | sha256 | cut -f 1 -d ' ')
 
