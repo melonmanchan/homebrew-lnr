@@ -14,10 +14,10 @@ class Lr < Formula
   end
 
   def install
-      bin.install "lr"
+    bin.install "lr"
   end
 
   test do
-    system "#{bin}/lr", "--version"
+    system "#{bin}/lr --version"
   end
 end

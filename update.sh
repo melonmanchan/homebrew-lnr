@@ -51,11 +51,7 @@ class Lr < Formula
   end
 
   def install
-    if Hardware::CPU.arm?
-      bin.install "lr-macos-arm64/lr"
-    else
-      bin.install "lr-macos-x64/lr"
-    end
+    bin.install "lr"
   end
 
   test do
