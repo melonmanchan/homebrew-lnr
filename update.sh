@@ -35,11 +35,17 @@ if [ "$HTTP_CODE" -ne 200 ]; then
   exit 1
 fi
 
-ARM_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-macos-arm64.zip"
-ARM_SHA256=$(curl -sSL "${ARM_URL}" | sha256 | cut -f 1 -d ' ')
+OSX_ARM_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-macos-arm64.zip"
+OSX_ARM_SHA256=$(curl -sSL "${OSX_ARM_URL}" | sha256 | cut -f 1 -d ' ')
 
-X64_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-macos-x64.zip"
-X64_SHA256=$(curl -sSL "${X64_URL}" | sha256 | cut -f 1 -d ' ')
+OSX_X64_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-macos-x64.zip"
+OSX_X64_SHA256=$(curl -sSL "${OSX_X64_URL}" | sha256 | cut -f 1 -d ' ')
+
+LINUX_ARM_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-linux-arm64.zip"
+LINUX_ARM_SHA256=$(curl -sSL "${LINUX_ARM_URL}" | sha256 | cut -f 1 -d ' ')
+
+LINUX_X64_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-linux-x64.zip"
+LINUX_X64_SHA256=$(curl -sSL "${LINUX_X64_URL}" | sha256 | cut -f 1 -d ' ')
 
 rm -rf Formula
 mkdir -p Formula
@@ -47,16 +53,28 @@ cat <<EOF >Formula/lr.rb
 class Lr < Formula
   desc "Linear CLI tool"
   homepage "https://github.com/melonmanchan/lr"
-  head "https://github.com/melonmanchan/lr.git", branch: "main"
   version "${VERSION}"
   license "MIT"
-  
-  if Hardware::CPU.arm?
-    url "${ARM_URL}"
-    sha256 "${ARM_SHA256}"
-  else
-    url "${X64_URL}"
-    sha256 "${X64_SHA256}"
+  head "https://github.com/melonmanchan/lr.git", branch: "main"
+
+  on_macos do
+    if Hardware::CPU.arm?
+      url "${OSX_ARM_URL}"
+      sha256 "${OSX_ARM_SHA256}"
+    else
+      url "${OSX_X64_URL}"
+      sha256 "${OSX_X64_SHA256}"
+    end
+  end
+
+  on_linux do
+    if Hardware::CPU.arm?
+      url "${LINUX_ARM_URL}"
+      sha256 "${LINUX_ARM_SHA256}"
+    else
+      url "${LINUX_X64_URL}"
+      sha256 "${LINUX_X64_SHA256}"
+    end
   end
 
   def install
@@ -64,7 +82,7 @@ class Lr < Formula
   end
 
   test do
-    system "#{bin}/lr --version"
+    system "#{bin}/lr", "--version"
   end
 end
 EOF
