@@ -26,7 +26,7 @@ fi
 
 VERSION="${1}"
 
-RELEASE_URL="https://github.com/melonmanchan/lr/releases/tag/v${VERSION}"
+RELEASE_URL="https://github.com/melonmanchan/lnr/releases/tag/v${VERSION}"
 
 HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$RELEASE_URL")
 
@@ -35,27 +35,27 @@ if [ "$HTTP_CODE" -ne 200 ]; then
   exit 1
 fi
 
-OSX_ARM_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-macos-arm64.zip"
+OSX_ARM_URL="https://github.com/melonmanchan/lnr/releases/download/v${VERSION}/lnr-macos-arm64.zip"
 OSX_ARM_SHA256=$(curl -sSL "${OSX_ARM_URL}" | sha256 | cut -f 1 -d ' ')
 
-OSX_X64_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-macos-x64.zip"
+OSX_X64_URL="https://github.com/melonmanchan/lnr/releases/download/v${VERSION}/lnr-macos-x64.zip"
 OSX_X64_SHA256=$(curl -sSL "${OSX_X64_URL}" | sha256 | cut -f 1 -d ' ')
 
-LINUX_ARM_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-linux-arm64.zip"
+LINUX_ARM_URL="https://github.com/melonmanchan/lnr/releases/download/v${VERSION}/lnr-linux-arm64.zip"
 LINUX_ARM_SHA256=$(curl -sSL "${LINUX_ARM_URL}" | sha256 | cut -f 1 -d ' ')
 
-LINUX_X64_URL="https://github.com/melonmanchan/lr/releases/download/v${VERSION}/lr-linux-x64.zip"
+LINUX_X64_URL="https://github.com/melonmanchan/lnr/releases/download/v${VERSION}/lnr-linux-x64.zip"
 LINUX_X64_SHA256=$(curl -sSL "${LINUX_X64_URL}" | sha256 | cut -f 1 -d ' ')
 
 rm -rf Formula
 mkdir -p Formula
-cat <<EOF >Formula/lr.rb
-class Lr < Formula
+cat <<EOF >Formula/lnr.rb
+class Lnr < Formula
   desc "Linear CLI tool"
-  homepage "https://github.com/melonmanchan/lr"
+  homepage "https://github.com/melonmanchan/lnr"
   version "${VERSION}"
   license "MIT"
-  head "https://github.com/melonmanchan/lr.git", branch: "main"
+  head "https://github.com/melonmanchan/lnr.git", branch: "main"
 
   on_macos do
     if Hardware::CPU.arm?
@@ -78,11 +78,11 @@ class Lr < Formula
   end
 
   def install
-    bin.install "lr"
+    bin.install "lnr"
   end
 
   test do
-    system "#{bin}/lr", "--version"
+    system "#{bin}/lnr", "--version"
   end
 end
 EOF

@@ -1,11 +1,11 @@
-# homebrew-lr
+# homebrew-lnr
 
-This provides a [Homebrew](https://brew.sh) tap for [lr](https://github.com/melonmanchan/lr).
+This provides a [Homebrew](https://brew.sh) tap for [lnr](https://github.com/melonmanchan/lnr).
 
 ## Usage
 
 ```
-brew tap melonmanchan/lr
-brew install melonmanchan/lr/lr
+brew tap melonmanchan/lnr
+brew install melonmanchan/lnr/lnr
 
 ```
