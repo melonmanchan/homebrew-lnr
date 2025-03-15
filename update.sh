@@ -35,15 +35,19 @@ if [ "$HTTP_CODE" -ne 200 ]; then
   exit 1
 fi
 
+echo "Downloading ARM OSX..."
 OSX_ARM_URL="https://github.com/melonmanchan/lnr/releases/download/v${VERSION}/lnr-macos-arm64.zip"
 OSX_ARM_SHA256=$(curl -sSL "${OSX_ARM_URL}" | sha256 | cut -f 1 -d ' ')
 
+echo "Downloading X64 OSX..."
 OSX_X64_URL="https://github.com/melonmanchan/lnr/releases/download/v${VERSION}/lnr-macos-x64.zip"
 OSX_X64_SHA256=$(curl -sSL "${OSX_X64_URL}" | sha256 | cut -f 1 -d ' ')
 
+echo "Downloading ARM Linux..."
 LINUX_ARM_URL="https://github.com/melonmanchan/lnr/releases/download/v${VERSION}/lnr-linux-arm64.zip"
 LINUX_ARM_SHA256=$(curl -sSL "${LINUX_ARM_URL}" | sha256 | cut -f 1 -d ' ')
 
+echo "Downloading x64 Linux..."
 LINUX_X64_URL="https://github.com/melonmanchan/lnr/releases/download/v${VERSION}/lnr-linux-x64.zip"
 LINUX_X64_SHA256=$(curl -sSL "${LINUX_X64_URL}" | sha256 | cut -f 1 -d ' ')
 
