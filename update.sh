@@ -87,6 +87,8 @@ class Lnr < Formula
 
   def install
     if build.head?
+      system "deno", "install"
+
       if OS.mac?
         if Hardware::CPU.arm?
           system "deno", "task", "compile:macos-arm64"
