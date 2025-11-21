@@ -3,7 +3,11 @@ class Lnr < Formula
   homepage "https://github.com/melonmanchan/lnr"
   version "0.1.1"
   license "MIT"
-  head "https://github.com/melonmanchan/lnr.git", branch: "main"
+
+  head do
+    url "https://github.com/melonmanchan/lnr.git", branch: "main"
+    depends_on "deno" => :build
+  end
 
   on_macos do
     if Hardware::CPU.arm?
@@ -25,8 +29,30 @@ class Lnr < Formula
     end
   end
 
+  depends_on "deno" => :build
+
   def install
-    bin.install "lnr"
+    if build.head?
+      if OS.mac?
+        if Hardware::CPU.arm?
+          system "deno", "task", "compile:macos-arm64"
+          bin.install "lnr-macos-arm64/lnr" => "lnr"
+        else
+          system "deno", "task", "compile:macos-x64"
+          bin.install "lnr-macos-x64/lnr" => "lnr"
+        end
+      else # Linux
+        if Hardware::CPU.arm?
+          system "deno", "task", "compile:linux-arm64"
+          bin.install "lnr-linux-arm64/lnr" => "lnr"
+        else
+          system "deno", "task", "compile:linux-x64"
+          bin.install "lnr-linux-x64/lnr" => "lnr"
+        end
+      end
+    else
+      bin.install "lnr"
+    end
   end
 
   test do
