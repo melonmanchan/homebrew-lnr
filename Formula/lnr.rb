@@ -1,7 +1,7 @@
 class Lnr < Formula
   desc "Linear CLI tool"
   homepage "https://github.com/melonmanchan/lnr"
-  version "0.1.1"
+  version "0.2.0"
   license "MIT"
 
   head do
@@ -11,21 +11,21 @@ class Lnr < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/melonmanchan/lnr/releases/download/v0.1.1/lnr-macos-arm64.zip"
-      sha256 "225760429f65862b157229e1235ca571105a363fdc1d1db712de54d406471b71"
+      url "https://github.com/melonmanchan/lnr/releases/download/v0.2.0/lnr-macos-arm64.zip"
+      sha256 "1d067c81e28dd62cb14cb525254744eff8ead476428b40a136a966586a7c77cc"
     else
-      url "https://github.com/melonmanchan/lnr/releases/download/v0.1.1/lnr-macos-x64.zip"
-      sha256 "485770a3e08bf970a536484c5fb66b27f061d98a39bd00293d7c7f7c8d34a018"
+      url "https://github.com/melonmanchan/lnr/releases/download/v0.2.0/lnr-macos-x64.zip"
+      sha256 "08faa76ca3bc94d6a5801746e74d3a8a9f327efb183227dbef84ff03e2d44bb7"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/melonmanchan/lnr/releases/download/v0.1.1/lnr-linux-arm64.zip"
-      sha256 "cf04fb3b028d0ef0b6b471b526ac9ecdc52ec5118aa9f40ff0aaa9fdb25ca18d"
+      url "https://github.com/melonmanchan/lnr/releases/download/v0.2.0/lnr-linux-arm64.zip"
+      sha256 "9e8c89bf103afc026b79ca823ca4a6eb138bf4e0f3b7d527448babe870ad0230"
     else
-      url "https://github.com/melonmanchan/lnr/releases/download/v0.1.1/lnr-linux-x64.zip"
-      sha256 "84cad9ba8f90ee933f6c897ae30e6ae2fecea34e32f8990a1239c95f08503f22"
+      url "https://github.com/melonmanchan/lnr/releases/download/v0.2.0/lnr-linux-x64.zip"
+      sha256 "5eccbfbc47eb0a3e139399eb472c4d0d79f10f7725a260deb1e46c693bb95210"
     end
   end
 
