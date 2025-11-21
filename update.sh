@@ -83,8 +83,6 @@ class Lnr < Formula
     end
   end
 
-  depends_on "deno" => :build
-
   def install
     if build.head?
       system "deno", "install"
